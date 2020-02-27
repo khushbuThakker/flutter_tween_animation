@@ -49,8 +49,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     animationController=AnimationController(vsync: this,duration: Duration(seconds: 2));
 
     // Defining both color and size animations
-    colorAnimation=ColorTween(begin: Colors.blue,end: Colors.yellow).animate(animationController);
-    sizeAnimation=Tween<double>(begin: 100,end: 300).animate(animationController);
+    colorAnimation = ColorTween(begin: Colors.blue, end: Colors.yellow).animate(animationController);
+    sizeAnimation = Tween<double>(begin: 100.0, end: 200.0).animate(animationController);
 
     // Rebuilding the screen when animation goes ahead
     animationController.addListener(() {
@@ -72,6 +72,13 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   }
 
   @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
+
+  @override
   Widget build(BuildContext context) {
 
 
@@ -87,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
           height: sizeAnimation.value,
           width: sizeAnimation.value,
-          color: sizeAnimation.value,
+          color: colorAnimation.value,
         )
       ),
     );
